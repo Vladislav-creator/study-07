@@ -11,6 +11,7 @@ body {
   background-color: #fafafa;
   color: #212121;
   line-height: 1.5;
+  padding: 50px;
 }
 
 input {
@@ -21,4 +22,20 @@ input {
 button {
   padding: 8px 12px;
   cursor: pointer;
+}
+.car-select {
+  width: 200px;
+  height: 44px;
+}
+.js-form {
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+.js-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
 }

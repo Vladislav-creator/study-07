@@ -1,18 +1,43 @@
 const btnIncrEl = document.querySelector('[data-action="increment"]');
 const btnDecrEl = document.querySelector('[data-action="decrement"]');
 let counterValue = 0;
+
 btnDecrEl.addEventListener("click", minusClick);
 function minusClick() {
-  counterValue -= 1;
+  counterValue -= 10;
+  if (counterValue === 0) {
+    divSquare.style.backgroundColor = "blue";
+  } else {
+    divSquare.style.backgroundColor = "green";
+  }
+  divSquare.style.marginLeft = `${counterValue}px`;
   document.querySelector("#value").textContent = counterValue;
   console.log(counterValue);
 }
 btnIncrEl.addEventListener("click", plusClick);
 function plusClick() {
-  counterValue += 1;
+  counterValue += 10;
+  if (counterValue === 0) {
+    divSquare.style.backgroundColor = "blue";
+  } else {
+    divSquare.style.backgroundColor = "red";
+  }
+  divSquare.style.marginLeft = `${counterValue}px`;
   document.querySelector("#value").textContent = counterValue;
   console.log(counterValue);
 }
+const divSquare = document.createElement("div");
+const pSquare = document.createElement("p");
+divSquare.className = "square";
+pSquare.textContent = "square";
+divSquare.append(pSquare);
+divSquare.style.backgroundColor = "blue";
+divSquare.style.width = "100px";
+divSquare.style.height = "100px";
+divSquare.style.display = "flex";
+pSquare.style.margin = "auto";
+btnIncrEl.after(divSquare);
+
 //2 вариант
 // btnDecrEl.addEventListener("click", () => {
 //   counterValue -= 1;
