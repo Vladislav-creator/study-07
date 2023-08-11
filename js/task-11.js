@@ -110,8 +110,10 @@ const ul = document.querySelector(".js-list");
 function render(arr) {
   const cards = arr
     .map(
-      (item) => `<li>
-        <img width = '320' height = '200'class='car-image' src=${item.img} />
+      (item) => `<li class = 'car-card'>
+        <img width = '300' height = '180'class='car-image' src=${
+          item.img
+        } alt= ${item.car + "*" + item.type} />
         <div>
         <h2 style='font-size: 20px; font-weight: bold'>${item.car}</h2>
         <h3 style='font-size: 20px'>${item.type}</h3>
@@ -131,13 +133,28 @@ const handleSubmit = (event) => {
   const form = event.currentTarget;
   const { query, options } = form.elements;
 
-  const filteredList = cars.filter((item) =>
-    options.selectedIndex === 0
-      ? item.car.toLowerCase() === query.value.trim().toLowerCase()
-      : item.type.toLowerCase() === query.value.trim().toLowerCase()
-  );
-
+  const filteredList = query.value
+    ? cars.filter((item) =>
+        options.selectedIndex === 0
+          ? item.car.toLowerCase() === query.value.trim().toLowerCase()
+          : item.type.toLowerCase() === query.value.trim().toLowerCase()
+      )
+    : cars;
   render(filteredList);
 };
 formEl.addEventListener("submit", handleSubmit);
-render(cars);
+
+// const handleSubmit = (event) => {
+//   event.preventDefault();
+//   console.log(event);
+//   const form = event.currentTarget;
+//   const { query, options } = form.elements;
+//   const filteredList = cars.filter((item) => {
+//     console.log(item.car);
+//     return options.selectedIndex === 0
+//       ? item.car.toLowerCase().includes(query.value.trim().toLowerCase())
+//       : item.type.toLowerCase().includes(query.value.trim().toLowerCase());
+//   });
+//   render(filteredList);
+// };
+// formEl.addEventListener("submit", handleSubmit);

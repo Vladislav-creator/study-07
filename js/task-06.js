@@ -12,15 +12,18 @@
 
 //The second option
 const nameInput = document.querySelector("#validation-input");
+const errorInput = document.querySelector(".error");
 nameInput.onblur = function () {
   if (
     nameInput.value.length === Number(nameInput.getAttribute("data-length"))
   ) {
     nameInput.classList.add("valid");
     nameInput.classList.remove("invalid");
+    errorInput.textContent = "";
   } else if (nameInput.value.length >= 1) {
     nameInput.classList.add("invalid");
     nameInput.classList.remove("valid");
+    errorInput.textContent = "Ошибка! Введите 6 символов!";
   }
 };
 //3 option
