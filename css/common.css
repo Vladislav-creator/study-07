@@ -13,6 +13,10 @@ body {
   line-height: 1.5;
   padding: 10px;
 }
+li {
+  list-style-type: none;
+  /* Убираем маркеры */
+}
 
 input {
   padding: 8px;
@@ -50,8 +54,29 @@ button {
 .error {
   color: #ff0000;
 }
-.square {
-  width: 50px;
-  height: 50px;
-  background-color: #ff0000;
+.greeting {
+  text-align: center;
+  font-size: 28px;
+}
+.container {
+  display: flex;
+  margin: 100px 50px 50px 50px;
+}
+.content {
+  width: 302px;
+  border: 1px solid black;
+  margin: 0 auto;
+  background-color: aquamarine;
+}
+.item {
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
+  line-height: center;
+  text-align: center;
+  display: inline-block;
+  font-size: 60px;
+  vertical-align: middle;
+  transition: backgrond 0.1s;
+  cursor: pointer;
 }

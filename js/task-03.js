@@ -26,27 +26,27 @@ menuItemsByTagName.style.listStyle = "none";
 menuItemsByTagName.style.display = "flex";
 menuItemsByTagName.style.gap = "50px";
 menuItemsByTagName.style.justifyContent = "space-evenly";
-
-const btn = document.querySelector(".btn");
-const square = document.querySelector(".square");
-const bodyWidth = document.body.clientWidth - 50;
-let currentPosition = 0;
-let movingRight = true;
-btn.addEventListener("click", () => {
-  if (movingRight) {
-    currentPosition += 50;
-    btn.textContent = "Right";
-    if (currentPosition >= bodyWidth) {
-      currentPosition = bodyWidth;
-      movingRight = false;
+const pEl = document.createElement("p");
+menuItemsByTagName.after(pEl);
+const text =
+  "(I like to go to work and from work home by bysycle.) That day I went to work by bicycle. The bike was put in the pantry. At work, I changed clothes and waited for the client. On the customer's call and I opened the doos of the salon to him. I said 'Hello' to the my client and let him into my ofice. The client answed me 'Well'";
+function transfomStr() {
+  const wordArray = text
+    // .replace(/[^a-zа-яё\s]/gi, "")
+    // .replace(/\s+/g, " ")
+    .split(/\s+/);
+  wordArray.forEach((el) => {
+    if (el.length > 4) {
+      const spanEl = document.createElement("span");
+      spanEl.style.color = "red";
+      spanEl.textContent = el + " ";
+      pEl.append(spanEl);
+    } else {
+      pEl.append(el + " ");
+      //pEl.innerHTML += el + " ";
     }
-  } else {
-    btn.textContent = "Left";
-    currentPosition -= 50;
-    if (currentPosition <= 0) {
-      currentPosition = 0;
-      movingRight = true;
-    }
-  }
-  square.style.left = currentPosition + "px";
-});
+  });
+}
+//transfomStr();
+pEl.append(text);
+pEl.style.color = "red";

@@ -110,14 +110,16 @@ const ul = document.querySelector(".js-list");
 function render(arr) {
   const cards = arr
     .map(
-      (item) => `<li class = 'car-card'>
-        <img width = '300' height = '180'class='car-image' src=${
+      (item) => `<li class = 'car-card js-target' data-car-id = '${item.id}'>
+        <img width = '300' height = '180'class='car-image js-target' src=${
           item.img
         } alt= ${item.car + "*" + item.type} />
-        <div>
-        <h2 style='font-size: 20px; font-weight: bold'>${item.car}</h2>
-        <h3 style='font-size: 20px'>${item.type}</h3>
-        <span style='font-size: 20px'>${item.price}$</span>
+        <div class = 'js-target'>
+        <h2 class = 'js-target' style='font-size: 20px; font-weight: bold'>${
+          item.car
+        }</h2>
+        <h3 class = 'js-target' style='font-size: 20px'>${item.type}</h3>
+        <span class = 'js-target' style='font-size: 20px'>${item.price}$</span>
         </div>
         </li>`
     )
@@ -158,3 +160,40 @@ formEl.addEventListener("submit", handleSubmit);
 //   render(filteredList);
 // };
 // formEl.addEventListener("submit", handleSubmit);
+
+ul.addEventListener("click", onClick);
+function onClick(evt) {
+  evt.preventDefault();
+  if (!evt.target.classList.contains("js-target")) {
+    return;
+  }
+  const carId =
+    evt.target.dataset.carId ?? evt.target.closest("li").dataset.carId;
+
+  const currentItem = cars.find(({ id }) => id === Number(carId));
+
+  const instance =
+    basicLightbox.create(`<li class = 'car-card' style='width: 523px'>
+  <img src="${currentItem.img}" width="500" height="360" alt='${currentItem.car}'>
+  <div>
+        <h2  style='font-size: 20px; font-weight: bold'>${currentItem.car}</h2>
+        <h3  style='font-size: 20px'>${currentItem.type}</h3>
+        <span  style='font-size: 20px'>${currentItem.price}$</span>
+        </div>
+  </li>
+`);
+  instance.show();
+  ul.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      instance.close();
+    }
+  });
+}
+//мой бред
+// const btnReset = document.querySelector(".js-reset");
+// console.log(btnReset);
+// btnReset.addEventListener("click", onClickReset);
+// function onClickReset() {
+
+//   render(cars);
+// }
