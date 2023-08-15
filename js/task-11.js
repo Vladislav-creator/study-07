@@ -190,10 +190,9 @@ function onClick(evt) {
   });
 }
 //мой бред
-// const btnReset = document.querySelector(".js-reset");
-// console.log(btnReset);
-// btnReset.addEventListener("click", onClickReset);
-// function onClickReset() {
-
-//   render(cars);
-// }
+const btnReset = document.querySelector(".js-reset");
+console.log(btnReset);
+btnReset.addEventListener("click", onClickReset);
+function onClickReset() {
+  render(cars);
+}
