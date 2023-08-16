@@ -1,3 +1,4 @@
+import throttle from "lodash.throttle";
 //1 option
 // document.getElementById("validation-input").onblur = function () {
 //   console.log(this.value.length);
@@ -7,22 +8,21 @@
 //   } else {
 //     this.classList.remove("invalid");
 //     this.classList.add("valid");
-//   }
-// };
-
+//}
 //The second option
-const nameInput = document.querySelector("#validation-input");
+const xLengthInput = document.querySelector("#validation-input");
 const errorInput = document.querySelector(".error");
-nameInput.onblur = function () {
+xLengthInput.onblur = function () {
   if (
-    nameInput.value.length === Number(nameInput.getAttribute("data-length"))
+    xLengthInput.value.length ===
+    Number(xLengthInput.getAttribute("data-length"))
   ) {
-    nameInput.classList.add("valid");
-    nameInput.classList.remove("invalid");
+    xLengthInput.classList.add("valid");
+    xLengthInput.classList.remove("invalid");
     errorInput.textContent = "";
-  } else if (nameInput.value.length >= 1) {
-    nameInput.classList.add("invalid");
-    nameInput.classList.remove("valid");
+  } else if (xLengthInput.value.length >= 1) {
+    xLengthInput.classList.add("invalid");
+    xLengthInput.classList.remove("valid");
     errorInput.textContent = "Ошибка! Введите 6 символов!";
   }
 };
@@ -42,3 +42,12 @@ nameInput.onblur = function () {
 //     textInput.classList.add("invalid");
 //   }
 // });
+const nameInput = document.querySelector("#name-input");
+console.log(nameInput);
+nameInput.addEventListener(
+  "input",
+  throttle(onSearch, 6000, { leading: false })
+);
+function onSearch(evt) {
+  console.dir(evt.target.value);
+}

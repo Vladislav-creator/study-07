@@ -131,18 +131,26 @@ render(cars);
 
 const handleSubmit = (event) => {
   event.preventDefault();
-  console.log(event);
-  const form = event.currentTarget;
-  const { query, options } = form.elements;
+  console.log(event.target);
+  if (event.submitter.classList.contains("js-search")) {
+    console.log(event.submitter);
 
-  const filteredList = query.value
-    ? cars.filter((item) =>
-        options.selectedIndex === 0
-          ? item.car.toLowerCase() === query.value.trim().toLowerCase()
-          : item.type.toLowerCase() === query.value.trim().toLowerCase()
-      )
-    : cars;
-  render(filteredList);
+    const form = event.currentTarget;
+    const { query, options } = form.elements;
+    const filteredList = query.value
+      ? cars.filter((item) =>
+          options.selectedIndex === 0
+            ? item.car.toLowerCase() === query.value.trim().toLowerCase()
+            : item.type.toLowerCase() === query.value.trim().toLowerCase()
+        )
+      : cars;
+    render(filteredList);
+  } else if (event.submitter.classList.contains("js-reset")) {
+    console.log(event.submitter);
+
+    render(cars);
+  }
+  formEl.reset();
 };
 formEl.addEventListener("submit", handleSubmit);
 
@@ -188,11 +196,4 @@ function onClick(evt) {
       instance.close();
     }
   });
-}
-//мой бред
-const btnReset = document.querySelector(".js-reset");
-console.log(btnReset);
-btnReset.addEventListener("click", onClickReset);
-function onClickReset() {
-  render(cars);
 }
