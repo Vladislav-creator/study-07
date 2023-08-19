@@ -111,7 +111,7 @@ function render(arr) {
   const cards = arr
     .map(
       (item) => `<li class = 'car-card js-target' data-car-id = '${item.id}'>
-        <img width = '300' height = '180'class='car-image js-target' src=${
+        <img loading = 'lazy' width = '300' height = '180'class='car-image js-target' src=${
           item.img
         } alt= ${item.car + "*" + item.type} />
         <div class = 'js-target'>

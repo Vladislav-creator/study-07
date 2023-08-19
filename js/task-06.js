@@ -1,4 +1,3 @@
-import throttle from "lodash.throttle";
 //1 option
 // document.getElementById("validation-input").onblur = function () {
 //   console.log(this.value.length);
@@ -42,12 +41,15 @@ xLengthInput.onblur = function () {
 //     textInput.classList.add("invalid");
 //   }
 // });
+//Мой бред
 const nameInput = document.querySelector("#name-input");
 console.log(nameInput);
 nameInput.addEventListener(
   "input",
-  throttle(onSearch, 6000, { leading: false })
+  _.debounce(onSearch, 6000 /*{ leading: false }*/)
 );
 function onSearch(evt) {
   console.dir(evt.target.value);
 }
+// const result = _.add(2, 3);
+// console.log(result); // 5

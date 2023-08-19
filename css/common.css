@@ -80,3 +80,8 @@ button {
   transition: backgrond 0.1s;
   cursor: pointer;
 }
+.section-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+}
