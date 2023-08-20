@@ -84,4 +84,7 @@ button {
   display: flex;
   flex-wrap: wrap;
   gap: 50px;
+  background-color: bisque;
+  margin: 1%;
+  padding: 1%;
 }
